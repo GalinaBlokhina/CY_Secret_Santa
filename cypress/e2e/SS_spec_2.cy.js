@@ -1,10 +1,12 @@
 describe('Secret Santa second test of box, new box, randomizer and account pages', () => {
+var mail = Cypress.env("email")
+var password = Cypress.env("password")
 beforeEach('sign in', () => {
 cy.visit('/'),
-cy.get(".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med").click()
-  cy.get(':nth-child(3) > .frm').type('galina-a@yandex.ru')
-  cy.get(':nth-child(4) > .frm').type('Test1234')
-  cy.get('.btn-main').click()
+cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med').click(),
+cy.get(':nth-child(3) > .frm').type(mail),
+cy.get(':nth-child(4) > .frm').type(password),
+cy.get('.btn-main').click()
 })
 it('boxes page test', () => {
   cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > .layout-row-start > [href="/account/boxes"] > .header-item > .header-item__text > .txt--med').should('be.visible')
