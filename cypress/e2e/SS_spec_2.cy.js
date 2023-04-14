@@ -14,4 +14,7 @@ cy.visitPages('[href="/randomizer"] > .btn-secondary', 'randomizer')
 it('account page test', () => {
 cy.visitPages('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > .layout-row-start > [href="/account"] > .header-item > .header-item__text', 'account')
 })
+after('sign out', () => {
+cy.get('.base--clickable > .txt--med').click()
+})
 })
