@@ -1,3 +1,19 @@
+Cypress.Commands.add('visitPages', (selector, url) => { 
+    cy.get(selector).should('be.visible')
+    .click()
+    cy.url().should('include', url)
+})
+
+Cypress.Commands.add('loginViaUi', (email, password)=> {
+cy.visit('/'),
+cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med').click(),
+cy.get(':nth-child(3) > .frm').type(email),
+cy.get(':nth-child(4) > .frm').type(password),
+cy.get('.btn-main').click()
+})
+
+
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
