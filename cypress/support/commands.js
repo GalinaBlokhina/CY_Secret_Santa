@@ -12,6 +12,21 @@ cy.get(':nth-child(4) > .frm').type(password),
 cy.get('.btn-main').click()
 })
 
+const regSelectors = require ('../fixtures/RegPageSelectors.json')
+
+Cypress.Commands.add('enterUserName', (userName)=> {
+cy.get(regSelectors.nameField)
+.click()
+.type(userName)
+})
+
+Cypress.Commands.add('enterUserEmail', (userEmail)=> {
+cy.get(regSelectors.emailField)
+.click()
+.type(userEmail)
+})
+
+
 
 
 // ***********************************************

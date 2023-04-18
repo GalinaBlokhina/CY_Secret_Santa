@@ -1,0 +1,6 @@
+[
+{"nameField": ":nth-child(3) > .frm"},
+{"emailField": ":nth-child(4) > .frm"},
+{"regButton":".btn-main"},
+{"errorMessage": ".frm-wrapper__top__error"}
+]
