@@ -25,7 +25,7 @@ Cypress.Commands.add("enterUserEmail", (userEmail) => {
   cy.get(regSelectors.emailField).type(userEmail);
 });
 
-Cypress.Commands.add("validUserData", (userName, userEmail) => {
+Cypress.Commands.add("validRegData", (userName, userEmail) => {
   cy.enterUserName(regSelectors.nameField, userName);
   cy.enterUserEmail(regSelectors.emailField, userEmail);
   cy.get(".btn-main").click();
