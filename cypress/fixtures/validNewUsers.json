@@ -1,0 +1,15 @@
+[
+{"userEmail": "Galina123@gmail.com", "userName":"Abc"},
+{"userEmail": "example.first.middle.lastname@email.com", "userName":"Abc"},
+{"userEmail": "example@subdomain.email.com", "userName":"Abc"},
+{"userEmail": "0987654321@example.com", "userName":"Abc"},
+{"userEmail": "example@email-one.com", "userName":"Abc"},
+{"userEmail": "very!`very.unusual@strange.email.example.com", "userName":"Abc"},
+{"userEmail": "a@b.com", "userName":"Abc"},
+{"userEmail": "Extreeeeemly-long-user-name-you-ve-never-seen-anything-like-this@mail.com", "name":"Abc"},
+{"userEmail": "TestUser1@mail.com", "userName":"AbsolutelyMarvellousIncredibleStrangeOdddLongNeverEndingUserName"},
+{"userEmail": "TestUser2@mail.com", "userName":"Ab"},
+{"userEmail": "TestUser3@mail.com", "userName":"Анна"},
+{"userEmail": "TestUser4@mail.com", "userName":"3009"},
+{"userEmail": "TestUser5@mail.com", "userName":"!@#$%^"}
+]

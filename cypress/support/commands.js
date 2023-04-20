@@ -1,31 +1,50 @@
-Cypress.Commands.add('visitPages', (selector, url) => { 
-    cy.get(selector).should('be.visible')
-    .click()
-    cy.url().should('include', url)
-})
-
-Cypress.Commands.add('loginViaUi', (email, password)=> {
-cy.visit('/'),
-cy.get('.layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med').click(),
-cy.get(':nth-child(3) > .frm').type(email),
-cy.get(':nth-child(4) > .frm').type(password),
-cy.get('.btn-main').click()
-})
-
-const regSelectors = require ('../fixtures/RegPageSelectors.json')
-
-Cypress.Commands.add('enterUserName', (userName)=> {
- cy.get(regSelectors.nameField).type(userName);
+Cypress.Commands.add("visitPages", (selector, url) => {
+  cy.get(selector).should("be.visible").click();
+  cy.url().should("include", url);
 });
 
-Cypress.Commands.add('enterUserEmail', (userEmail)=> {
-cy.get(regSelectors.emailField)
-.click()
-.type(userEmail)
-})
+Cypress.Commands.add("loginViaUi", (email, password) => {
+  cy.visit("/"),
+    cy
+      .get(
+        ".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med"
+      )
+      .click(),
+    cy.get(":nth-child(3) > .frm").type(email),
+    cy.get(":nth-child(4) > .frm").type(password),
+    cy.get(".btn-main").click();
+});
 
+const regSelectors = require("../fixtures/RegPageSelectors.json");
 
+Cypress.Commands.add("enterUserName", (userName) => {
+  cy.get(regSelectors.nameField).type(userName);
+});
 
+Cypress.Commands.add("enterUserEmail", (userEmail) => {
+  cy.get(regSelectors.emailField).type(userEmail);
+});
+
+Cypress.Commands.add("validUserData", (userName, userEmail) => {
+  cy.enterUserName(regSelectors.nameField, userName);
+  cy.enterUserEmail(regSelectors.emailField, userEmail);
+  cy.get(".btn-main").click();
+  cy.request("/api/register?redirect=%2F");
+  cy.get(regSelectors.emailSent).should("have.text", "Письмо отправлено!");
+});
+
+Cypress.Commands.add("invalidUserName", (userName, userEmail) => {
+  cy.enterUserName(regSelectors.nameField, userName);
+  cy.enterUserEmail(regSelectors.emailField, userEmail);
+  cy.get(regSelectors.errorMessage).should("be.visible");
+});
+
+Cypress.Commands.add("invalidUserEmail", (userName, userEmail) => {
+  cy.enterUserName(regSelectors.nameField, userName);
+  cy.enterUserEmail(regSelectors.emailField, userEmail);
+  cy.get(regSelectors.nameField).click();
+  cy.get(regSelectors.errorMessage).should("be.visible");
+});
 
 // ***********************************************
 // This example commands.js shows you how to

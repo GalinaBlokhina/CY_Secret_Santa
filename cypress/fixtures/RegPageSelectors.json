@@ -1,6 +1,6 @@
 {
     "nameField": ":nth-child(3) > .frm",
     "emailField": ":nth-child(4) > .frm",
-    "regButton":".btn-main",
+    "emailSent": "[class='picture-notice__title txt-h3--semi txt']",
     "errorMessage": ".frm-wrapper__top__error"
 }
