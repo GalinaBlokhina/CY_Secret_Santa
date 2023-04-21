@@ -1,0 +1,11 @@
+[
+{"userEmail": "plaintextaddress", "userName":"Abc"},
+{"userEmail": "@#@@##@%^%#$@#$@#.com", "userName":"Abc"},
+{"userEmail": "@email.com", "userName":"Abc"},
+{"userEmail": "example.email.com", "userName":"Abc"},
+{"userEmail": "example@example@email.com", "userName":"Abc"},
+{"userEmail": "example.email.com", "userName":"Abc"},
+{"userEmail": "example@111.222.333.44444", "userName":"Abc"},
+{"userEmail": "example@email…com", "userName":"Abc"},
+{"userEmail": "(),:;<>@email.com", "userName":"Abc"}
+]

@@ -1,0 +1,5 @@
+[{"userEmail": "random@mail.com", "userPassword":"12345"},
+{"userEmail": "  ", "userPassword": "  "},
+{"userEmail": "galina-a@yandex.ru", "userPassword":"12345"},
+{"userEmail": "galina-a@yandex.ru", "userPassword": " "},
+{"userEmail": "  ", "userPassword":"Test1234"}]

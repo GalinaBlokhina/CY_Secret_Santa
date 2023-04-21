@@ -4,7 +4,7 @@ Cypress.Commands.add("visitPages", (selector, url) => {
 });
 
 Cypress.Commands.add("loginViaUi", (email, password) => {
-  cy.visit("/"),
+  cy.visit("/login"),
     cy
       .get(
         ".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med"
@@ -25,25 +25,41 @@ Cypress.Commands.add("enterUserEmail", (userEmail) => {
   cy.get(regSelectors.emailField).type(userEmail);
 });
 
-Cypress.Commands.add("validRegData", (userName, userEmail) => {
-  cy.enterUserName(regSelectors.nameField, userName);
-  cy.enterUserEmail(regSelectors.emailField, userEmail);
+Cypress.Commands.add("validUserData", (userName, userEmail) => {
+  cy.enterUserName(userName);
+  cy.enterUserEmail(userEmail);
   cy.get(".btn-main").click();
   cy.request("/api/register?redirect=%2F");
   cy.get(regSelectors.emailSent).should("have.text", "Письмо отправлено!");
 });
 
 Cypress.Commands.add("invalidUserName", (userName, userEmail) => {
-  cy.enterUserName(regSelectors.nameField, userName);
-  cy.enterUserEmail(regSelectors.emailField, userEmail);
+  cy.enterUserName(userName);
+  cy.enterUserEmail(userEmail);
   cy.get(regSelectors.errorMessage).should("be.visible");
 });
 
 Cypress.Commands.add("invalidUserEmail", (userName, userEmail) => {
-  cy.enterUserName(regSelectors.nameField, userName);
-  cy.enterUserEmail(regSelectors.emailField, userEmail);
+  cy.enterUserName(userName);
+  cy.enterUserEmail(userEmail);
   cy.get(regSelectors.nameField).click();
   cy.get(regSelectors.errorMessage).should("be.visible");
+});
+
+const loginSelectors = require("../fixtures/LoginPageSelectors.json");
+
+Cypress.Commands.add("validLogin", (userEmail, userPassword) => {
+  cy.get(loginSelectors.emailField).type(userEmail);
+  cy.get(loginSelectors.passwordField).type(userPassword);
+  cy.get(".btn-main").click();
+  cy.url().should("equal", "https://santa-secret.ru/");
+});
+
+Cypress.Commands.add("invalidLogin", (userEmail, userPassword) => {
+  cy.get(loginSelectors.emailField).type(userEmail);
+  cy.get(loginSelectors.passwordField).type(userPassword);
+  cy.get(".btn-main").click();
+  cy.get(loginSelectors.errorMessage).should("be.visible");
 });
 
 // ***********************************************
