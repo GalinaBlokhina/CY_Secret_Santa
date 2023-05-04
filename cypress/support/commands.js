@@ -47,7 +47,7 @@ Cypress.Commands.add("invalidUserEmail", (userName, userEmail) => {
 });
 
 const loginSelectors = require("../fixtures/LoginPageSelectors.json");
-
+const generalElements = require("../fixtures/General.json")
 Cypress.Commands.add("validLogin", (userEmail, userPassword) => {
   cy.get(loginSelectors.emailField).type(userEmail);
   cy.get(loginSelectors.passwordField).type(userPassword);
@@ -69,8 +69,32 @@ Cypress.Commands.add("changePassword", (userName, newPassword) => {
     ":nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm"
   ).type(newPassword);
   cy.get(".layout-row-end > .btn-service").click();
-  
 })
+
+Cypress.Commands.add("login", (userName, password) => {
+  cy.get(loginSelectors.emailField).type(userName);
+  cy.get(loginSelectors.passwordField).type(password);
+  cy.get(generalElements.submitButton).click();
+})
+
+const inviteeBoxPage = require('../fixtures/inviteeBoxPage')
+const inviteeDashBoard = require('../fixtures/inviteeDashboardPage')
+import { faker } from "@faker-js/faker";
+let wishes = faker.word.adjective() + " "+ faker.word.noun()
+Cypress.Commands.add("participantsQuestionnaire", () => {
+  cy.contains('Создать карточку участника').should("exist")
+    cy.get(generalElements.submitButton).click();
+    cy.get(generalElements.arrowRight).click();
+    cy.get(generalElements.arrowRight).click();
+    cy.get(inviteeBoxPage.wishesElement).type(wishes)
+    cy.get(generalElements.arrowRight).click();
+    cy.get(inviteeDashBoard.noticeForInvitee).invoke("text").then((text)=> {
+    expect(text).to.contain('Это — анонимный чат с вашим Тайным Сантой')
+    })
+    cy.clearCookies()
+})
+
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite

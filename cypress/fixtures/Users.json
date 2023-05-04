@@ -1,0 +1,21 @@
+{
+"userAuthor":
+{"email": "galina-a@yandex.ru", 
+"password": "Test1234", 
+"name": "GalinaAuthor"},
+
+"user1":
+{"email": "galina-a+test1@yandex.ru", 
+"password": "Test1234", 
+"name": "Galina1"},
+
+"user2":
+{"email": "galina-a+test2@yandex.ru", 
+"password": "Test1234", 
+"name": "Galina2"},
+
+"user3":
+{"email": "galina-a+test3@yandex.ru", 
+"password": "Test1234", 
+"name": "Galina3"}
+}
