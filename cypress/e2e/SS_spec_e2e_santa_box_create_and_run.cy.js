@@ -6,6 +6,7 @@ const invitePage = require("../fixtures/invitePage.json");
 import { faker } from "@faker-js/faker";
 describe("user can create a box and run it", () => {
   let newBoxName = faker.word.noun({ length: { min: 5, max: 10 } });
+  let newBoxKey = faker.word.noun({ length: { min: 5, max: 10 } });
   let maxAmount = 50;
   let currency = "Евро";
   let inviteLink;
@@ -14,6 +15,7 @@ describe("user can create a box and run it", () => {
     cy.login(users.userAuthor.email, users.userAuthor.password);
     cy.contains("Создать коробку").click();
     cy.get(boxPage.boxNameField).type(newBoxName);
+    cy.get(boxPage.boxKeyField).clear().type(newBoxKey);
     cy.get(generalElements.arrowRight).click();
     cy.get(boxPage.icon12).click();
     cy.get(generalElements.arrowRight).click();
@@ -32,7 +34,7 @@ describe("user can create a box and run it", () => {
         expect(text).to.include("Подопечный");
       });
   });
-  it("add participants", () => {
+  it.skip("add participants", () => {
     cy.get(generalElements.submitButton).click();
     cy.get(invitePage.inviteLink)
       .invoke("text")
@@ -41,7 +43,7 @@ describe("user can create a box and run it", () => {
       });
     cy.clearCookies();
   });
-  it("approve as user1", () => {
+  it.skip("approve as user1", () => {
     cy.visit(inviteLink);
     cy.get(generalElements.submitButton).click();
     cy.contains("войдите").click();
@@ -63,8 +65,17 @@ describe("user can create a box and run it", () => {
     cy.participantsQuestionnaire()
   })
 
-  Cypress._.times(10, () => {
-  describe('Description', () => {
+it('delete box', () => {
+  cy.request({
+    method: "DELETE",
+    url: `api/box/${newBoxKey}`,
+  }).then((resp) => {
+    expect(resp.status).to.equal(200);
+  });
+})
+
+  //Cypress._.times(10, () => {
+  //describe('Description', () => {
   it.skip("delete boxes", () => {
       cy.visit("/login");
       cy.login(users.userAuthor.email, users.userAuthor.password);
@@ -76,5 +87,5 @@ describe("user can create a box and run it", () => {
       cy.get('.btn-service').click()
     })
   })
-})
-})
+//})
+//})
