@@ -77,25 +77,6 @@ Cypress.Commands.add("login", (userName, password) => {
   cy.get(generalElements.submitButton).click();
 })
 
-const notification = require('../fixtures/notifications')
-Cypress.Commands.add("participantsGetNotifications", (email, password) => {
-  cy.visit("/login");
-  cy.get(loginSelectors.emailField).type(email);
-  cy.get(loginSelectors.passwordField).type(password);
-  cy.get(generalElements.submitButton).click();
-    cy.get(notification.mainPageNotification).click();
-    cy.get(".btn-service")
-      .invoke("text")
-      .then((text) => {
-        expect(text).to.include("Узнать подопечного");
-      });
-    cy.clearCookies();
-})
-
-    
-
-
-
 const inviteeBoxPage = require('../fixtures/inviteeBoxPage')
 const inviteeDashBoard = require('../fixtures/inviteeDashboardPage')
 import { faker } from "@faker-js/faker";
@@ -113,6 +94,18 @@ Cypress.Commands.add("participantsQuestionnaire", () => {
     cy.clearCookies()
 })
 
+const notification = require('../fixtures/notifications')
+Cypress.Commands.add("participantsNotification", (userName, password) => {
+  cy.visit("/login");
+  cy.login(userName, password)
+  cy.get(notification.mainPageNotification).click();
+    cy.get(".btn-service")
+      .invoke("text")
+      .then((text) => {
+        expect(text).to.include("Узнать подопечного");
+      });
+    cy.clearCookies();
+  });
 
 // ***********************************************
 // This example commands.js shows you how to
