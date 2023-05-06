@@ -14,7 +14,9 @@
     "cy:2:electron": "npx cypress run --browser electron --spec 'cypress/e2e/SS_spec_2.cy.js'",
     "cy:both:specs:dif:browsers": "npm run cy:1:chrome && npm run cy:2:electron",
     "cy:both:specs:dif:browsers:dash": "npm run cy:1:chrome --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef && npm run cy:2:electron --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef",
-    "cy:dashboard": "npx cypress run --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef"
+    "cy:dashboard": "npx cypress run --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef",
+    "cy:run:6": "npx cypress run --spec 'cypress/e2e/SS_spec_6_1_boxes_API.cy.js'",
+    "cy:run:e2e": "npx cypress run --spec 'cypress/e2e/SS_spec_e2e_santa_box_create_and_run.cy.js'"
   },
   "keywords": [
     "cypress"
@@ -22,6 +24,7 @@
   "author": "GBlokhina",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "cypress": "^12.8.1"
   }
 }
