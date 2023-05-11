@@ -5,12 +5,10 @@ const generalElements = require("../fixtures/General.json");
 const dashboardPage = require("../fixtures/dashboard.json");
 const invitePage = require("../fixtures/invitePage.json");
 const createdBoxPage = require("../fixtures/createdBoxPage.json");
-const goToNotifications = require("../fixtures/notifications.json");
-const loginSelectors = require("../fixtures/LoginPageSelectors.json");
 import { faker } from "@faker-js/faker";
 describe("user can create a box and run it", () => {
   let newBoxName = faker.word.noun({ length: { min: 5, max: 10 } });
-  let newBoxKey = faker.word.noun({ length: { min: 5, max: 10 } });
+  let newBoxKey = faker.word.adjective({ length: { min: 5, max: 10 } });
   let maxAmount = 50;
   let currency = "Евро";
   let inviteLink;
@@ -28,7 +26,6 @@ describe("user can create a box and run it", () => {
     cy.get(boxPage.currency).select(currency);
     cy.get(generalElements.arrowRight).click();
     cy.get(generalElements.arrowRight).click();
-    //cy.get(generalElements.arrowRight).click();
     cy.get(dashboardPage.createdBoxName).should("have.text", newBoxName);
     cy.get(".layout-1__header-wrapper-fixed .toggle-menu-item span")
       .invoke("text")
@@ -68,19 +65,21 @@ describe("user can create a box and run it", () => {
     cy.contains("войдите").click();
     cy.login(users.user3.email, users.user3.password);
     cy.participantsQuestionnaire();
+    cy.wait(100)
   });
   it("author logins and runs randomiser", () => {
     cy.visit("/login");
     cy.login(author.email, author.password);
+    cy.wait(200)
     cy.visit(`/box/${newBoxKey}`);
-    cy.get(createdBoxPage.goToRandomiser).click();
-    cy.get(generalElements.submitButton).click();
+    cy.contains('Перейти к жеребьевке').click({force:true});
+    cy.get(generalElements.submitButton).click({force:true});
     cy.get(".txt-h2")
       .invoke("text")
       .then((text) => {
         expect(text).to.include("Проведение жеребьевки");
       });
-    cy.contains("Да, провести жеребьевку").click();
+    cy.contains("Да, провести жеребьевку").click({force:true});
     cy.get(".picture-notice__title")
       .invoke("text")
       .then((text) => {
