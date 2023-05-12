@@ -1,9 +1,9 @@
 const { defineConfig } = require("cypress");
-//const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
-//const createEsbuildPlugin =
-  //require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
-//const addCucumberPreprocessorPlugin =
-  //require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const createEsbuildPlugin =
+  require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
+const addCucumberPreprocessorPlugin =
+  require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
 
 module.exports = defineConfig({
   projectId: "2pbpw2",
@@ -12,19 +12,19 @@ module.exports = defineConfig({
     testIsolation: false,
     pageLoadTimeout: 100000,
     watchForFileChanges: false,
+    specPattern: "**/*.feature",
     setupNodeEvents(on, config) {
-      //const bundler = createBundler({
-      //plugins: [createEsbuildPlugin(config)],
-      //}
+      const bundler = createBundler({
+      plugins: [createEsbuildPlugin(config)],
+      })
+      on("file:preprocessor", bundler);
+      addCucumberPreprocessorPlugin(on, config);
 
-      //on("file:preprocessor", bundler);
-      //addCucumberPreprocessorPlugin(on, config);
-
-      //return config;
+      return config;
     },
-  //},
-  //env: {
-    //email: "galina-a@yandex.ru",
-    //password: "Test1234",
+  },
+  env: {
+    email: "galina-a@yandex.ru",
+    password: "Test1234",
   },
 });
