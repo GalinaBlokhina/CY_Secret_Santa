@@ -6,7 +6,10 @@ const { defineConfig } = require("cypress");
   //require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
 
 module.exports = defineConfig({
+    viewportWidth: 1280,
+    viewportHeight: 800,
   projectId: "2pbpw2",
+  video: false,
   e2e: {
     baseUrl: "https://santa-secret.ru/",
     testIsolation: false,
@@ -22,9 +25,9 @@ module.exports = defineConfig({
 
       //return config;
     },
-  //},
-  //env: {
-    //email: "galina-a@yandex.ru",
-    //password: "Test1234",
+  },
+  env: {
+    email: "galina-a@yandex.ru",
+    password: "Test1234"
   },
 });
