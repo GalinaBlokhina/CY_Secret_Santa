@@ -5,11 +5,11 @@ Cypress.Commands.add("visitPages", (selector, url) => {
 
 Cypress.Commands.add("loginViaUi", (email, password) => {
   cy.visit("/login"),
-    cy
-      .get(
-        ".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med"
-      )
-      .click(),
+    //cy
+      //.get(
+        //".layout-1__header-wrapper-fixed > .layout-1__header > .header > .header__items > a > .base--clickable > .header-item__text > .txt--med"
+      //)
+      //.click(),
     cy.get(":nth-child(3) > .frm").type(email),
     cy.get(":nth-child(4) > .frm").type(password),
     cy.get(".btn-main").click();
@@ -63,7 +63,8 @@ Cypress.Commands.add("invalidLogin", (userEmail, userPassword) => {
 });
 
 Cypress.Commands.add("changePassword", (userName, newPassword) => {
-  cy.contains(userName).click({ force: true });
+  cy.contains('Галина').click({ force: true });
+  cy.wait(1000)
   cy.get(".layout-column-start > :nth-child(1) > .frm").type(newPassword);
   cy.get(
     ":nth-child(4) > .form-page-group__main > .layout-column-start > :nth-child(2) > .frm"

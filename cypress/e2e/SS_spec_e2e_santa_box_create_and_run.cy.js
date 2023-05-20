@@ -65,21 +65,21 @@ describe("user can create a box and run it", () => {
     cy.contains("войдите").click();
     cy.login(users.user3.email, users.user3.password);
     cy.participantsQuestionnaire();
-    cy.wait(100)
+    cy.wait(100);
   });
   it("author logins and runs randomiser", () => {
     cy.visit("/login");
     cy.login(author.email, author.password);
-    cy.wait(200)
+    cy.wait(200);
     cy.visit(`/box/${newBoxKey}`);
-    cy.contains('Перейти к жеребьевке').click({force:true});
-    cy.get(generalElements.submitButton).click({force:true});
+    cy.contains("Перейти к жеребьевке").click({ force: true });
+    cy.get(generalElements.submitButton).click({ force: true });
     cy.get(".txt-h2")
       .invoke("text")
       .then((text) => {
         expect(text).to.include("Проведение жеребьевки");
       });
-    cy.contains("Да, провести жеребьевку").click({force:true});
+    cy.contains("Да, провести жеребьевку").click({ force: true });
     cy.get(".picture-notice__title")
       .invoke("text")
       .then((text) => {

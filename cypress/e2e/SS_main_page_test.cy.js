@@ -1,6 +1,6 @@
 describe('Secret Santa main page test', () => {
   beforeEach(() => {
-      cy.visit('https://santa-secret.ru/')
+      cy.visit('/')
   })
 
   it('has three secondary buttons', () => {
