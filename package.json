@@ -22,10 +22,12 @@
     "cy:run:local:2folder": "npx cypress run --browser electron --config-file cypress-2.config.js --spec 'cypress/e2e/folder2_specs_2_6/*'",
     "cy:run:dash:2folder": "npx cypress run --browser electron --config-file cypress-2.config.js --spec 'cypress/e2e/folder2_specs_2_6/*' --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef",
     "cy:run:parallel:dash": "npm run cy:run:dash:1folder ----group Folder1 --ci build-id1 --parallel && npm run cy:run:dash:2folder ----group Folder2 --ci build-id1 --parallel",
-    "cy:run:local:parallel": "npm run cy:run:local:1folder --parallel && npm run cy:run:local:2folder --parallel",
-    "cy:run:local:3spec": "npx cypress run --browser chrome --config-file cypress.config.js --spec 'cypress/e2e/folder1_specs_3_4/SS_spec_3_registration_copy.cy.js'",
-    "cy:run:local:4spec": "npx cypress run --browser electron --config-file cypress-2.config.js --spec 'cypress/e2e/folder1_specs_3_4/SS_spec_4_login_copy.cy.js'",
-    "cy:run:local:2specs:parallel": "npm run cy:run:local:3spec --parallel && npm run cy:run:local:4spec --parallel"
+    "cy:run:local:parallel": "npm run cy:run:local:1folder --parallel & npm run cy:run:local:2folder --parallel",
+    "cy:run:dash:2spec": "npx cypress run --browser chrome --spec 'cypress/e2e/folder2_specs_2_6/SS_spec_2_visit_pages_copy.cy.js' --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef",
+    "cy:run:dash:6spec": "npx cypress run --browser electron --spec 'cypress/e2e/folder2_specs_2_6/SS_spec_6_1_boxes_API_copy.cy.js' --record --key 467dc5c4-fe3d-480b-aa84-60a9c9b886ef",
+    "cy:run:dash:2:6:parallel": "npm run cy:run:dash:2spec -- --group chrome --ci-build-id1 --parallel & npm run cy:run:dash:6spec -- --group electron --ci-build-id1 --parallel",
+    "cy:run": "npx cypress run",
+    "cy:run:local:2specs:parallel:using:plugin": "cypress-parallel -s cy:run -t 2 -d 'cypress/e2e/folder1_specs_3_4'"
   },
   "keywords": [
     "cypress"
