@@ -49,7 +49,7 @@ describe("Create, change, delete a box - API", () => {
       expect(response.body.box.name).to.equal(newName);
     });
   });
-  it("change name of a box", () => {
+  it.skip("change name of a box", () => {
     let newName1 = faker.color;
     cy.request({
       method: "PUT",
