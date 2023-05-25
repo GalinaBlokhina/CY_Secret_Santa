@@ -1,7 +1,9 @@
 # Allure
 
 ## Установка
-установить плагин в dev dependencies
+установить следующие пакеты:
+npm i allure-commandline
+и
 npm i -D @shelex/cypress-allure-plugin
 
 ## Настройка
@@ -45,7 +47,7 @@ require('@shelex/cypress-allure-plugin');
 Для получения отчета в Allure при выполнении скрипта необходимо добавлять флаг
 --env allure=true
 
-Т.о., скрипт будет выглядеть следуюшим образом: 
+Скрипт будет выглядеть следуюшим образом: 
 npx cypress run --env allure=true
 
 ## Команды запуска
